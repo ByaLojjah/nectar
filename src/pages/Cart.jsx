@@ -1,5 +1,6 @@
+
 import React, { useState } from "react";
-import "./Cart.css"; // Assure-toi d’avoir ce fichier CSS à côté
+
 
 const Cart = () => {
   const [products, setProducts] = useState([
@@ -122,3 +123,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
