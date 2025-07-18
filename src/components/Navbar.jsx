@@ -1,19 +1,42 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
-        <div>
-            <nav>
-                <ul>
-                    <li><Link to="/">Accueil</Link></li>
-                    <li><Link to="/search">Recherche</Link></li>
-                    <li><Link to="/cart">Panier</Link></li>
-                    <li><Link to="/profile">Profil</Link></li>
-                    <li><Link to="/login">Se connecter</Link></li>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/">Shop</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/search"><img src="./icons/Group 3.png" alt="" />Explore</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/cart">Cart</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/favorite">Favorite</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/profile">Account</Link>
+                    </li>
                 </ul>
-            </nav>
-        </div>
-    )
+
+            </div>
+        </nav>
+    );
 }
 
-export default Navbar
+export default Navbar;
