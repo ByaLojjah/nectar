@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css';
+import React, { useState, useEffect } from 'react';
 
-// Import des pages
+// Pages
 import Home from './pages/Home'
 import Search from './pages/Search'
 import ProductDetail from './pages/ProductDetail'
@@ -16,14 +17,30 @@ import Favorite from './pages/Favorite'
 import Authentification from './pages/Authentification'
 import Filter from './pages/Filter'
 
-import Navbar from './components/Navbar'  // Affichée sur toutes les pages
+// Composants
+import Navbar from './components/Navbar'
+import Loader from './components/Loader'
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2 secondes
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <BrowserRouter>
-      <Navbar /> {/* S'affiche partout */}
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Signup />} /> {/* 🚨 Page affichée par défaut */}
+        <Route path="/" element={<RedirectToSignup />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/product/:id" element={<ProductDetail />} />
@@ -33,13 +50,23 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/filter" element={<Filter />} />
       </Routes>
     </BrowserRouter>
   );
+}
+
+
+function RedirectToSignup() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/signup');
+  }, [navigate]);
+
+  return null;
 }
 
 export default App;

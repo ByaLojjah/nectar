@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 const Signup = () => {
   const [section, setSection] = useState('splash');
   const [userData, setUserData] = useState({});
@@ -29,13 +28,10 @@ const Signup = () => {
           setSection('start');
         }
       });
-    }, 5000);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [isFirebaseReady]);
-
-
-
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -98,48 +94,46 @@ const Signup = () => {
       if (doc.exists) setUserData(doc.data());
     });
   };
+
   const handleGoogleSignIn = () => {
-  const provider = new window.firebase.auth.GoogleAuthProvider();
-  window.auth.signInWithPopup(provider)
-    .then(result => {
-      const user = result.user;
-      return window.db.collection("users").doc(user.uid).set({
-        name: user.displayName,
-        email: user.email
-      }, { merge: true });
-    })
-    .then(() => {
-      loadHomeData(window.auth.currentUser.uid);
-      setSection("home");
-    })
-    .catch(error => {
-      alert("Erreur Google : " + error.message);
-    });
-};
+    const provider = new window.firebase.auth.GoogleAuthProvider();
+    window.auth.signInWithPopup(provider)
+      .then(result => {
+        const user = result.user;
+        return window.db.collection("users").doc(user.uid).set({
+          name: user.displayName,
+          email: user.email
+        }, { merge: true });
+      })
+      .then(() => {
+        loadHomeData(window.auth.currentUser.uid);
+        setSection("home");
+      })
+      .catch(error => {
+        alert("Erreur Google : " + error.message);
+      });
+  };
 
-const handleFacebookSignIn = () => {
-  const provider = new window.firebase.auth.FacebookAuthProvider();
-  window.auth.signInWithPopup(provider)
-    .then(result => {
-      const user = result.user;
-      return window.db.collection("users").doc(user.uid).set({
-        name: user.displayName,
-        email: user.email
-      }, { merge: true });
-    })
-    .then(() => {
-      loadHomeData(window.auth.currentUser.uid);
-      setSection("home");
-    })
-    .catch(error => {
-      alert("Erreur Facebook : " + error.message);
-    });
-};
+  const handleFacebookSignIn = () => {
+    const provider = new window.firebase.auth.FacebookAuthProvider();
+    window.auth.signInWithPopup(provider)
+      .then(result => {
+        const user = result.user;
+        return window.db.collection("users").doc(user.uid).set({
+          name: user.displayName,
+          email: user.email
+        }, { merge: true });
+      })
+      .then(() => {
+        loadHomeData(window.auth.currentUser.uid);
+        setSection("home");
+      })
+      .catch(error => {
+        alert("Erreur Facebook : " + error.message);
+      });
+  };
 
-
- 
   return (
-    
     <div className="container mt-5">
       {section === 'splash' && (
         <section className="text-center">
@@ -165,14 +159,15 @@ const handleFacebookSignIn = () => {
             <button type="submit" className="btn btn-primary w-100">Connexion</button>
           </form>
 
-        <div className="d-flex flex-column gap-2 mb-3" style={{ maxWidth: '400px', margin: 'auto' }}>
-          <button className="btn btn-outline-primary" onClick={handleGoogleSignIn}>
-            Connexion avec Google
-          </button>
-          <button className="btn btn-outline-primary" onClick={handleFacebookSignIn}>
-            Connexion avec Facebook
-          </button>
-        </div>
+          <div className="d-flex flex-column gap-2 mb-3" style={{ maxWidth: '400px', margin: 'auto' }}>
+            <button className="btn btn-outline-primary" onClick={handleGoogleSignIn}>
+              Connexion avec Google
+            </button>
+            <button className="btn btn-outline-primary" onClick={handleFacebookSignIn}>
+              Connexion avec Facebook
+            </button>
+          </div>
+
           <p className="mt-3 text-center">
             <button onClick={() => setSection('sign-up')} className="btn btn-link">Créer un compte</button> |
             <button onClick={() => setSection('forgot')} className="btn btn-link">Mot de passe oublié</button>
@@ -235,12 +230,10 @@ const handleFacebookSignIn = () => {
 
       {section === 'home' && (
         <section>
-          <nav className="navbar navbar-expand-lg bg-light mb-3">
-            <div className="container-fluid">
-              <span className="navbar-brand"><strong>Votre localisation :</strong> {userData.zone} - {userData.area}</span>
-              <button onClick={handleLogout} className="btn btn-outline-danger">Déconnexion</button>
-            </div>
-          </nav>
+          <div className="mb-3 text-end">
+            <p><strong>Votre localisation :</strong> {userData.zone} - {userData.area}</p>
+            <button onClick={handleLogout} className="btn btn-outline-danger">Déconnexion</button>
+          </div>
           <h2>Bienvenue sur votre page d’accueil</h2>
           <p>Ici la liste des produits, promotions, etc.</p>
           <button className="btn btn-secondary mt-3" onClick={() => setSection("profile")}>Voir profil</button>
