@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+       <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-bottom w-100">
             <button
                 className="navbar-toggler"
                 type="button"
@@ -15,26 +15,25 @@ function Navbar() {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Shop</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/search"><img src="./icons/Group 3.png" alt="" />Explore</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/cart">Cart</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/favorite">Favorite</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/profile">Account</Link>
-                    </li>
-                </ul>
-
+            
+            <div class="container d-flex justify-content-around">
+                <a href="groce.html" class="nav-link  text-center">
+                    <i class="fa-solid fa-store"></i><br/><strong>Shop</strong>
+                </a>
+                <a href="explore.html" class="nav-link text-center">
+                    <i class="fa-solid fa-compass"></i><br/><strong >Explore</strong>
+                </a>
+                <a href="#" class="nav-link text-center">
+                    <i class="fa-solid fa-cart-shopping"></i><br/><strong>Cart</strong>
+                </a>
+                <a href="#" class="nav-link text-center">
+                    <i class="fa-solid fa-heart"></i><br/><strong>Favourite</strong>
+                </a>
+                <a href="#" class="nav-link text-center">
+                    <i class="fa-solid fa-user"></i><br/><strong>Account</strong>
+                </a>
             </div>
+    
         </nav>
     );
 }
