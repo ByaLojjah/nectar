@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css';
 
-// Import de toutes les pages
+// Import des pages
 import Home from './pages/Home'
 import Search from './pages/Search'
 import ProductDetail from './pages/ProductDetail'
@@ -15,14 +16,15 @@ import Favorite from './pages/Favorite'
 import Authentification from './pages/Authentification'
 import Filter from './pages/Filter'
 
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar'  // Affichée sur toutes les pages
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar /> {/* S'affiche partout */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Signup />} /> {/* 🚨 Page affichée par défaut */}
+        <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
@@ -37,7 +39,7 @@ function App() {
         <Route path="/filter" element={<Filter />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
