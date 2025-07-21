@@ -21,10 +21,7 @@ function Navbar() {
                         <Link className="nav-link" to="/">Shop</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/search">
-                            <img src="./icons/Group 3.png" alt="Explore Icon" style={{ width: '20px', marginRight: '5px' }} />
-                            Explore
-                        </Link>
+                        <Link className="nav-link" to="/search"><img src="./icons/Group 3.png" alt="" />Explore</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/cart">Cart</Link>
@@ -35,13 +32,8 @@ function Navbar() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/profile">Account</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/login">Se connecter</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/signup">Créer un compte</Link>
-                    </li>
                 </ul>
+
             </div>
         </nav>
     );
