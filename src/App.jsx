@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
@@ -21,25 +21,33 @@ import Filter from './pages/Filter'
 import Navbar from './components/Navbar'
 import Loader from './components/Loader'
 
-function App() {
+
+function AppWrapper() {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2 secondes
-    return () => clearTimeout(timer);
-  }, []);
+      navigate('/signup');
+    }, 2000);
 
-  if (loading) {
-    return <Loader />;
-  }
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
+  if (loading) return <Loader />;
+  return <App />;
+}
+
+function App() {
+  const location = useLocation();
+  const noNavbarRoutes = ['/', '/signup', '/login', '/authentification'];
+  const hideNavbar = noNavbarRoutes.includes(location.pathname);
 
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!hideNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<RedirectToSignup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
@@ -54,19 +62,14 @@ function App() {
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/filter" element={<Filter />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
-
-function RedirectToSignup() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate('/signup');
-  }, [navigate]);
-
-  return null;
+export default function RootApp() {
+  return (
+    <BrowserRouter>
+      <AppWrapper />
+    </BrowserRouter>
+  );
 }
-
-export default App;
