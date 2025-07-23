@@ -39,6 +39,7 @@ function AppWrapper() {
   return <App />;
 }
 
+
 function App() {
   const location = useLocation();
   const noNavbarRoutes = ['/', '/signup', '/login', '/authentification'];

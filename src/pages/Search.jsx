@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,14 +24,14 @@ const Search = () => {
       </div>
 
       <section className="container">
-        <div className="row m-4 d-flex justify-content-center gap-5 liste">
+        <div className="row m-4 d-flex justify-content-center gap-5 listeh">
           {[
-            { name: "Egg Chicken Red", image: "image search/image01.png" },
-            { name: "Egg Chicken White", image: "image search/image02.png" },
-            { name: "Egg Pasta", image: "image search/image3.png" },
-            { name: "Egg Noodles", image: "image search/image04.png" },
-            { name: "Mayonnais Eggless", image: "image search/image05.png" },
-            { name: "Egg Noodles", image: "image search/image06.png" },
+            { name: "Egg Chicken Red", image: "images/image01.png" },
+            { name: "Egg Chicken White", image: "images/image02.png" },
+            { name: "Egg Pasta", image: "images/image3.png" },
+            { name: "Egg Noodles", image: "images/image04.png" },
+            { name: "Mayonnais Eggless", image: "images/image05.png" },
+            { name: "Egg Noodles", image: "images/image06.png" },
           ]
             .filter((product) =>
               product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -38,12 +39,12 @@ const Search = () => {
             .map((product, index) => (
               <div
                 key={index}
-                className="col-lg-3 col-md-6 col-sm-12 border border-secondary border-1 rounded-4 text-center BLOC"
+                className="col-lg-3 col-md-6 col-sm-12 border border-secondary border-1 rounded-4 text-center BLOC "
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-100 h-50"
+                  className="w-100 h-50 p-4 mt-5"
                 />
                 <p>
                   <strong>{product.name}</strong> <br />
@@ -55,12 +56,12 @@ const Search = () => {
                   </div>
                   <div className="col-4 text-end me-2">
                     <button
-                      className="rounded-5"
-                      style={{ border: "none", background: "none" }}
+                      className="rounded-2"
+                      style={{ border: "none", background: "white", height: "40px", width: "70%",}}
                     >
                       <i
-                        className="fa-solid fa-square-plus"
-                        style={{ color: "#76bc76", fontSize: "50px" }}
+                        className="fa-solid fa-square-plus "
+                        style={{ color: "#76bc76", fontSize: "40px"}}
                       ></i>
                     </button>
                   </div>
