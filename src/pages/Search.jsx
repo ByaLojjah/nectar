@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,11 +56,11 @@ const Search = () => {
                   <div className="col-4 text-end me-2">
                     <button
                       className="rounded-2"
-                      style={{ border: "none", background: "white", height: "40px", width: "70%",}}
+                      style={{ border: "none", background: "white", height: "40px", width: "70%", }}
                     >
                       <i
                         className="fa-solid fa-square-plus "
-                        style={{ color: "#76bc76", fontSize: "40px"}}
+                        style={{ color: "#76bc76", fontSize: "40px" }}
                       ></i>
                     </button>
                   </div>
