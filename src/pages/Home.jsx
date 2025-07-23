@@ -49,52 +49,49 @@ const Home = () => {
       displayProducts("best-products", bestProducts);
     });
     return (
-        <div>
-            <div className="container text-center my-3">
-    <p className="mb-0 fw-bold fs-4 text-uppercase text-center" id="home-location"><i className="fas fa-map-marker-alt me-2 text-success"></i>Bakeli Grocery</p>
-    <input className="form-control mt-3" type="search" placeholder="Search Store"/>
-  </div>
+      <div>
+        <div className="container text-center my-3">
+          <p className="mb-0 fw-bold fs-4 text-uppercase text-center" id="home-location"><i className="fas fa-map-marker-alt me-2 text-success"></i>Bakeli Grocery</p>
+          <input className="form-control mt-3" type="search" placeholder="Search Store"/>
+        </div>
 
-  <div className="container my-4">
-    <div id="bannerCarousel" className="carousel slide" data-bs-ride="carousel">
-      <div className="carousel-inner rounded ">
-        <div className="carousel-item active">
-          <img src="images/banner.png" className="d-block w-100 object-fit-contain" alt="Banner 1"/>
+        <div className="container my-4">
+          <div id="bannerCarousel" className="carousel slide" data-bs-ride="carousel">
+            <div className="carousel-inner rounded ">
+              <div className="carousel-item active">
+                <img src="images/banner.png" className="d-block w-100 object-fit-contain" alt="Banner 1"/>
+              </div>
+              <div className="carousel-item">
+                <img src="https://i.pinimg.com/736x/ad/54/a3/ad54a3abda75b3ce9c2c3abb1bc59018.jpg" className="d-block w-100 object-fit-contain" alt="Banner 2"/>
+              </div>
+              <div className="carousel-item">
+                <img src="https://i.pinimg.com/736x/35/22/02/352202fd56128a82b18c8c0964053b4d.jpg" className="d-block w-100 object-fit-contain" alt="Banner 3"/>
+              </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon"></span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+              <span className="carousel-control-next-icon"></span>
+            </button>
+          </div>
         </div>
-        <div className="carousel-item">
-          <img src="https://i.pinimg.com/736x/ad/54/a3/ad54a3abda75b3ce9c2c3abb1bc59018.jpg" className="d-block w-100 object-fit-contain" alt="Banner 2"/>
+
+        <div classNameclass="container">
+          <div className="d-flex justify-content-between align-items-center">
+            <h5>Exclusive Offer</h5>
+            <a href="exclusive.html?type=exclusive" className="see">See all</a>
+          </div>
+          <div className="row w-100 justify-content-around" id="exclusive-products"></div>
         </div>
-        <div className="carousel-item">
-          <img src="https://i.pinimg.com/736x/35/22/02/352202fd56128a82b18c8c0964053b4d.jpg" className="d-block w-100 object-fit-contain" alt="Banner 3"/>
+
+        <div className="container mt-5">
+          <div className="d-flex justify-content-between align-items-center">
+            <h5>Best Selling</h5>
+            <a href="best.html?type=best" className="see">See all</a>
+          </div>
+          <div className="row w-100 justify-content-around" id="best-products"></div>
         </div>
       </div>
-      <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon"></span>
-      </button>
-      <button className="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-        <span className="carousel-control-next-icon"></span>
-      </button>
-    </div>
-  </div>
-
-  <div classNameclass="container">
-    <div className="d-flex justify-content-between align-items-center">
-      <h5>Exclusive Offer</h5>
-      <a href="exclusive.html?type=exclusive" className="see">See all</a>
-    </div>
-    <div className="row w-100 justify-content-around" id="exclusive-products"></div>
-  </div>
-
-  <div className="container mt-5">
-    <div className="d-flex justify-content-between align-items-center">
-      <h5>Best Selling</h5>
-      <a href="best.html?type=best" className="see">See all</a>
-    </div>
-    <div className="row w-100 justify-content-around" id="best-products"></div>
-  </div>
-
-        </div>
     )
 }
-
-export default Home;
