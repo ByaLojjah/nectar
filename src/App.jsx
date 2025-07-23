@@ -25,16 +25,17 @@ import Loader from './components/Loader'
 // function AppWrapper() {
 //   const [loading, setLoading] = useState(true);
 //   const navigate = useNavigate();
-
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
 //       setLoading(false);
 //       navigate('/signup');
+//       navigate('/login');
 //     }, 2000);
-
 //     return () => clearTimeout(timer);
 //   }, [navigate]);
-
+//   if (loading) return <Loader />;
+//   return <App />;
+// }
 //   if (loading) return <Loader />;
 //   return <App />;
 // }
@@ -70,7 +71,7 @@ function App() {
 export default function RootApp() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <App />
     </BrowserRouter>
   );
 }
