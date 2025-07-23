@@ -1,10 +1,15 @@
 // src/components/Profile.jsx
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { auth, db } from '../firebase-config';
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+=======
+import { useNavigate, Link } from 'react-router-dom';
+export default function Profile() {
+>>>>>>> 070ae4cedf997c7b4e4f8077dd864fe6b286c4b8
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 

@@ -1,12 +1,12 @@
-
 import React, { useState } from "react";
+
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div>
-      <div className="container recherche">
+    <div className="mt-5 pt-5">
+      <div className="container recherche ">
         <form className="d-flex m-5" role="search" onSubmit={(e) => e.preventDefault()}>
           <input
             className="form-control me-2"
@@ -23,14 +23,14 @@ const Search = () => {
       </div>
 
       <section className="container">
-        <div className="row m-4 d-flex justify-content-center gap-5 liste">
+        <div className="row m-4 d-flex justify-content-center gap-5 listeh">
           {[
-            { name: "Egg Chicken Red", image: "image search/image01.png" },
-            { name: "Egg Chicken White", image: "image search/image02.png" },
-            { name: "Egg Pasta", image: "image search/image3.png" },
-            { name: "Egg Noodles", image: "image search/image04.png" },
-            { name: "Mayonnais Eggless", image: "image search/image05.png" },
-            { name: "Egg Noodles", image: "image search/image06.png" },
+            { name: "Egg Chicken Red", image: "images/image01.png" },
+            { name: "Egg Chicken White", image: "images/image02.png" },
+            { name: "Egg Pasta", image: "images/image3.png" },
+            { name: "Egg Noodles", image: "images/image04.png" },
+            { name: "Mayonnais Eggless", image: "images/image05.png" },
+            { name: "Egg Noodles", image: "images/image06.png" },
           ]
             .filter((product) =>
               product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -38,30 +38,32 @@ const Search = () => {
             .map((product, index) => (
               <div
                 key={index}
-                className="col-lg-3 col-md-6 col-sm-12 border border-secondary border-1 rounded-4 text-center BLOC"
+                className="col-lg-4 border border-secondary border-1 rounded-4 text-center  "
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-100 h-50"
+                  className="w-75 h-50 p-4"
                 />
                 <p>
                   <strong>{product.name}</strong> <br />
                   <span className="text-secondary">4pcs, Price</span>
                 </p>
                 <div className="row d-flex justify-content-center">
-                  <div className="col-4">
+                  <div className="col-4 ">
                     <h2>$1.99</h2>
                   </div>
-                  <div className="col-4 text-end me-2">
+                  <div className="col-4  text-end me-2">
                     <button
-                      className="rounded-5"
-                      style={{ border: "none", background: "none" }}
+                      className="rounded-2"
+                      style={{ border: "none", background: "white", height: "40px", width: "70%", }}
                     >
-                      <i
-                        className="fa-solid fa-square-plus"
-                        style={{ color: "#76bc76", fontSize: "50px" }}
-                      ></i>
+                      <a href="/cart">
+                        <i
+                          className="fa-solid fa-square-plus "
+                          style={{ color: "#76bc76", fontSize: "40px" }}
+                        ></i>
+                      </a>
                     </button>
                   </div>
                 </div>
@@ -74,4 +76,3 @@ const Search = () => {
 };
 
 export default Search;
-

@@ -3,24 +3,28 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Pages
-import Home from './pages/Home'
-import Search from './pages/Search'
+import Home from './pages/Home';
+import Search from './pages/Search';
+import ProductDetail from './pages/ProductDetail';
 import LocationForm from './pages/LocationForm.jsx';
-import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
-import OrderHistory from './pages/OrderHistory'
-import Profile from './pages/Profile'
-import Settings from './pages/Settings'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Favorite from './pages/Favorite'
-import Authentification from './pages/Authentification'
-import Filter from './pages/Filter'
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderHistory from './pages/OrderHistory';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Favorite from './pages/Favorite';
+import Authentification from './pages/Authentification';
+import Filter from './pages/Filter';
+import Best from './pages/Best';
 
 // Composants
-import Navbar from './components/Navbar'
-import Loader from './components/Loader'
+import Navbar from './components/Navbar';
+import Loader from './components/Loader';
+
+// function AppWrapper() {
+//   const [loading, setLoading] = useState(true);
 
 
 
@@ -28,15 +32,12 @@ import Loader from './components/Loader'
 // function AppWrapper() {
 //   const [loading, setLoading] = useState(true);
 //   const navigate = useNavigate();
-
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
 //       setLoading(false);
-//       navigate('/login');
-//     }, 2000);
-
+//     }, 2000); // Simule le chargement initial (splash screen par exemple)
 //     return () => clearTimeout(timer);
-//   }, [navigate]);
+//   }, []);
 
 //   if (loading) return <Loader />;
 //   return <App />;
@@ -66,6 +67,7 @@ function App() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/filter" element={<Filter />} />
+        <Route path="/best" element={<Best />} />
       </Routes>
     </>
   );
@@ -74,7 +76,7 @@ function App() {
 export default function RootApp() {
   return (
     <BrowserRouter>
-      <App />
+      <AppWrapper />
     </BrowserRouter>
   );
 }
