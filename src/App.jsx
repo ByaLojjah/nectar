@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 // Pages
 import Home from './pages/Home'
 import Search from './pages/Search'
+import LocationForm from './pages/LocationForm.jsx';
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
@@ -20,6 +21,8 @@ import Filter from './pages/Filter'
 // Composants
 import Navbar from './components/Navbar'
 import Loader from './components/Loader'
+
+
 
 
 // function AppWrapper() {
@@ -48,6 +51,8 @@ function App() {
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
+        <Route path="/locationform" element={<LocationForm />} />
+        <Route path="/" element={<Signup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />

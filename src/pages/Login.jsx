@@ -1,113 +1,90 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
-
+import { auth } from '../firebase-config';
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup
+} from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const [emailValid, setEmailValid] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-
-    if (name === 'email') {
-      const valid = /\S+@\S+\.\S+/.test(value);
-      setEmailValid(valid);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/home');
+    } catch (error) {
+      alert("Erreur de connexion : " + error.message);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // ici tu peux appeler Firebase Auth
+  // Connexion avec Google
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/home');
+    } catch (error) {
+      alert("Erreur Google : " + error.message);
+    }
+  };
+
+  // Connexion avec Facebook
+  const handleFacebookLogin = async () => {
+    const provider = new FacebookAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/home');
+    } catch (error) {
+      alert("Erreur Facebook : " + error.message);
+    }
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>
-        <div className="text-center mb-3">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/135/135620.png"
-            alt="Logo"
-            style={{ height: '40px' }}
-          />
-        </div>
-
-        <h3 className="text-center fw-bold">Log In</h3>
-        <p className="text-muted text-center mb-4">Enter your credentials to continue</p>
-
-        <form onSubmit={handleSubmit}>
-
-          <div className="mb-3 position-relative">
+    <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
+      <div className="w-100" style={{ maxWidth: '400px' }}>
+        <form onSubmit={handleLogin} className="p-4 shadow rounded bg-white">
+          <div className="text-center mb-4">
+            <img src="/carrot.png" alt="logo" style={{ height: 40 }} />
+            <h2 className="fw-bold">Log In</h2>
+            <p className="text-muted">Enter your credentials to continue</p>
+          </div>
+          <div className="mb-3">
             <label className="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="email@example.com"
-            />
-            {emailValid && (
-              <span
-                className="position-absolute text-success"
-                style={{ top: '38px', right: '10px', fontSize: '1.2rem' }}
-              >
-                ✓
-              </span>
-            )}
+            <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
-
-          <div className="mb-3 position-relative">
+          <div className="mb-3">
             <label className="form-label">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              required
-              value={formData.password}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="********"
-            />
-            <span
-              role="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="position-absolute text-secondary"
-              style={{ top: '38px', right: '10px', cursor: 'pointer' }}
-            >
-              {showPassword ? '🙈' : '👁️'}
-            </span>
+            <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-
-          <p className="small text-muted">
-            By continuing you agree to our <a href="#" className="text-success">Terms of Service</a> and <a href="#" className="text-success">Privacy Policy</a>.
+          <p className="text-muted small">
+            By continuing you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
           </p>
+          <button className="btn btn-success w-100" type="submit">Log In</button>
 
-          <button type="submit" className="btn btn-success w-100 mt-2">Log In</button>
+          <hr />
+
+          {/* Boutons connexion Google et Facebook */}
+          <button type="button" onClick={handleGoogleLogin} className="btn btn-danger w-100 mb-2">
+            Continue with Google
+          </button>
+          <button type="button" onClick={handleFacebookLogin} className="btn btn-primary w-100">
+            Continue with Facebook
+          </button>
+
+          <p className="text-center mt-3">
+            Don’t have an account? <a href="/signup">Signup</a>
+          </p>
         </form>
-
-        <p className="text-center mt-3 small">
-          Already have an account? <a href="/login" className="text-success fw-semibold">Signup</a>
-        </p>
       </div>
     </div>
   );
 };
 
 export default Login;
-
-// const Login = () => {
-//     return (
-//         <div>
-//             <h1>Connectez-vous</h1>
-//         </div>
-//     )
-// }
-
-// export default Login;
