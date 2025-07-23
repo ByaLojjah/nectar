@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top w-100">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top  w-100">
             <button
                 className="navbar-toggler"
                 type="button"

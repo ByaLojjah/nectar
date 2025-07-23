@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const exclusiveProducts = [
@@ -19,33 +19,35 @@ const bestProducts = [
 
 function ProductCard({ product, onAdd }) {
   return (
-    <div className="col-6 col-md-4 col-lg-3 mb-4">
-      <div className="card h-100">
-        <img
-          src={product.image}
-          className="card-img-top p-2"
-          alt={product.name}
-          style={{ height: "150px", objectFit: "contain" }}
-        />
-        <div className="card-body text-center">
-          <h6 className="card-title">{product.name}</h6>
-          <p className="card-text">${product.price.toFixed(2)}</p>
-          <button className="btn btn-success btn-sm" onClick={() => onAdd(product)}>+</button>
-        </div>
-      </div>
+    <div className="product-card text-center col-lg-4">
+      <img src={product.image} className="img-fluid" style={{ height: "120px", objectFit: "contain" }} alt={product.name} />
+      <h6 className="mt-2">{product.name}</h6>
+      <p>${product.price.toFixed(2)}</p>
+      <button className="btn btn-success btn-sm" onClick={() => onAdd(product)}>+</button>
     </div>
   );
 }
 
 function ProductSection({ title, link, products, onAdd }) {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollBy({ left: 250, behavior: 'smooth' });
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-2">
         <h5>{title}</h5>
         <a href={link} className="see">See all</a>
       </div>
-      <div className="row w-100 justify-content-around">
-        {products.slice(0, 4).map(product => (
+      <div className="scroll-container" ref={scrollRef}>
+        {products.map(product => (
           <ProductCard key={product.id} product={product} onAdd={onAdd} />
         ))}
       </div>
@@ -62,7 +64,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="mt-5 pt-5">
       <div className="container text-center my-3">
         <p className="mb-0 fw-bold fs-4 text-uppercase text-center" id="home-location">
           <i className="fas fa-map-marker-alt me-2 text-success"></i>Bakeli Grocery
@@ -70,37 +72,36 @@ const Home = () => {
         <input className="form-control mt-3" type="search" placeholder="Search Store" />
       </div>
 
-      {/* Carousel */}
+      {/* Carousel Banners */}
       <div className="container my-4">
         <div id="bannerCarousel" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner rounded">
             <div className="carousel-item active">
-              <img src="images/banner.png" className="d-block w-100 object-fit-contain" alt="Banner 1" />
+              <img src="images/banner.png" className="d-block w-100" alt="Banner 1" />
             </div>
             <div className="carousel-item">
-              <img src="https://i.pinimg.com/736x/ad/54/a3/ad54a3abda75b3ce9c2c3abb1bc59018.jpg" className="d-block w-100 object-fit-contain" alt="Banner 2" />
+              <img src="https://i.pinimg.com/736x/ad/54/a3/ad54a3abda75b3ce9c2c3abb1bc59018.jpg" className="d-block w-100" alt="Banner 2" />
             </div>
             <div className="carousel-item">
-              <img src="https://i.pinimg.com/736x/35/22/02/352202fd56128a82b18c8c0964053b4d.jpg" className="d-block w-100 object-fit-contain" alt="Banner 3" />
+              <img src="https://i.pinimg.com/736x/35/22/02/352202fd56128a82b18c8c0964053b4d.jpg" className="d-block w-100" alt="Banner 3" />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
             <span className="carousel-control-prev-icon"></span>
           </button>
           <button className="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon"></span>
+            <a href="/Best"><span className="carousel-control-next-icon"></span></a>
           </button>
         </div>
       </div>
 
-      {/* Sections */}
+      {/* Product sliders */}
       <ProductSection
         title="Exclusive Offer"
         link="exclusive.html?type=exclusive"
         products={exclusiveProducts}
         onAdd={handleAddToBasket}
       />
-
       <ProductSection
         title="Best Selling"
         link="best.html?type=best"

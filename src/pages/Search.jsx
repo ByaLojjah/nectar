@@ -5,8 +5,8 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div>
-      <div className="container recherche">
+    <div className="mt-5 pt-5">
+      <div className="container recherche ">
         <form className="d-flex m-5" role="search" onSubmit={(e) => e.preventDefault()}>
           <input
             className="form-control me-2"
@@ -38,7 +38,7 @@ const Search = () => {
             .map((product, index) => (
               <div
                 key={index}
-                className="col-lg-3 border border-secondary border-1 rounded-4 text-center  "
+                className="col-lg-4 border border-secondary border-1 rounded-4 text-center  "
               >
                 <img
                   src={product.image}
@@ -58,10 +58,12 @@ const Search = () => {
                       className="rounded-2"
                       style={{ border: "none", background: "white", height: "40px", width: "70%", }}
                     >
-                      <i
-                        className="fa-solid fa-square-plus "
-                        style={{ color: "#76bc76", fontSize: "40px" }}
-                      ></i>
+                      <a href="/cart">
+                        <i
+                          className="fa-solid fa-square-plus "
+                          style={{ color: "#76bc76", fontSize: "40px" }}
+                        ></i>
+                      </a>
                     </button>
                   </div>
                 </div>

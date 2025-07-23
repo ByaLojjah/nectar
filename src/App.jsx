@@ -16,6 +16,7 @@ import Signup from './pages/Signup';
 import Favorite from './pages/Favorite';
 import Authentification from './pages/Authentification';
 import Filter from './pages/Filter';
+import Best from './pages/Best';
 
 // Composants
 import Navbar from './components/Navbar';
@@ -57,6 +58,7 @@ function App() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/filter" element={<Filter />} />
+        <Route path="/best" element={<Best />} />
       </Routes>
     </>
   );
