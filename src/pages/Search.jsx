@@ -38,22 +38,22 @@ const Search = () => {
             .map((product, index) => (
               <div
                 key={index}
-                className="col-lg-3 col-md-6 col-sm-12 border border-secondary border-1 rounded-4 text-center BLOC "
+                className="col-lg-3 border border-secondary border-1 rounded-4 text-center  "
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-100 h-50 p-4 mt-5"
+                  className="w-75 h-50 p-4"
                 />
                 <p>
                   <strong>{product.name}</strong> <br />
                   <span className="text-secondary">4pcs, Price</span>
                 </p>
                 <div className="row d-flex justify-content-center">
-                  <div className="col-4">
+                  <div className="col-4 ">
                     <h2>$1.99</h2>
                   </div>
-                  <div className="col-4 text-end me-2">
+                  <div className="col-4  text-end me-2">
                     <button
                       className="rounded-2"
                       style={{ border: "none", background: "white", height: "40px", width: "70%", }}

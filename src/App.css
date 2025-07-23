@@ -1,11 +1,28 @@
+
+
+.BLOC{
+    width: 85%;
+    height: 500px;
+    padding: 7%;
+}
+
+::placeholder{
+    font-weight: bold;
+}
+/* button a{
+    color: rgb(250, 248, 248);
+    text-decoration: none;
+} */
+
 /* === Layout général === */
 
 
-.BLOC {
+
+/* .BLOC {
   width: 85%;
   height: 500px;
   padding: 7%;
-}
+} */
 
 ::placeholder {
   font-weight: bold;
@@ -22,6 +39,7 @@
   max-width: 700px;
   margin: auto;
   gap: 20px;
+ 
 }
 
 .carte-produit img {
