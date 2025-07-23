@@ -110,3 +110,28 @@ button a {
   background-color: #009e72;
 
 }
+.page-top {
+    height: 100%;
+    background-color: #53b175;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row {
+    margin: 20%;
+}
+h1 {
+    font-size: 53px;
+}
+.navbar-toggler {
+    color: white;
+}
+.navbar-toggler-icon .span {
+    color: white;
+}
+
+.navbar-brand a {
+    background-color: white;
+}
+.navbar-brand a:hover {
+    list-style: none;
+}
