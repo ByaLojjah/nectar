@@ -3,16 +3,15 @@
     width: 85%;
     height: 500px;
     padding: 7%;
-    
 }
 
 ::placeholder{
     font-weight: bold;
 }
-button a{
+/* button a{
     color: rgb(250, 248, 248);
     text-decoration: none;
-}
+} */
 
 
 * {
