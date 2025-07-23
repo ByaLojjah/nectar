@@ -3,43 +3,37 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Pages
-import Home from './pages/Home'
-import Search from './pages/Search'
-import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
-import OrderHistory from './pages/OrderHistory'
-import Profile from './pages/Profile'
-import Settings from './pages/Settings'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Favorite from './pages/Favorite'
-import Authentification from './pages/Authentification'
-import Filter from './pages/Filter'
+import Home from './pages/Home';
+import Search from './pages/Search';
+import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderHistory from './pages/OrderHistory';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Favorite from './pages/Favorite';
+import Authentification from './pages/Authentification';
+import Filter from './pages/Filter';
 
 // Composants
-import Navbar from './components/Navbar'
-import Loader from './components/Loader'
+import Navbar from './components/Navbar';
+import Loader from './components/Loader';
 
+function AppWrapper() {
+  const [loading, setLoading] = useState(true);
 
-// function AppWrapper() {
-//   const [loading, setLoading] = useState(true);
-//   const navigate = useNavigate();
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setLoading(false);
-//       navigate('/signup');
-//       navigate('/login');
-//     }, 2000);
-//     return () => clearTimeout(timer);
-//   }, [navigate]);
-//   if (loading) return <Loader />;
-//   return <App />;
-// }
-//   if (loading) return <Loader />;
-//   return <App />;
-// }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simule le chargement initial (splash screen par exemple)
+    return () => clearTimeout(timer);
+  }, []);
 
+  if (loading) return <Loader />;
+  return <App />;
+}
 
 function App() {
   const location = useLocation();
@@ -71,7 +65,7 @@ function App() {
 export default function RootApp() {
   return (
     <BrowserRouter>
-      <App />
+      <AppWrapper />
     </BrowserRouter>
   );
 }
