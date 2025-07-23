@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import './App.css';
+import React, { useState, useEffect } from 'react';
 
-// Import de toutes les pages
+// Pages
 import Home from './pages/Home'
 import Search from './pages/Search'
 import ProductDetail from './pages/ProductDetail'
@@ -11,15 +13,45 @@ import Profile from './pages/Profile'
 import Settings from './pages/Settings'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Favorite from './pages/Favorite'
+import Authentification from './pages/Authentification'
+import Filter from './pages/Filter'
 
-import Navbar from './components/Navbar'  // Affichée sur toutes les pages
+// Composants
+import Navbar from './components/Navbar'
+import Loader from './components/Loader'
+
+
+// function AppWrapper() {
+//   const [loading, setLoading] = useState(true);
+//   const navigate = useNavigate();
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setLoading(false);
+//       navigate('/signup');
+//       navigate('/login');
+//     }, 2000);
+//     return () => clearTimeout(timer);
+//   }, [navigate]);
+//   if (loading) return <Loader />;
+//   return <App />;
+// }
+//   if (loading) return <Loader />;
+//   return <App />;
+// }
+
 
 function App() {
+  const location = useLocation();
+  const noNavbarRoutes = ['/', '/signup', '/login', '/authentification'];
+  const hideNavbar = noNavbarRoutes.includes(location.pathname);
+
   return (
-    <BrowserRouter>
-      <Navbar /> {/* S'affiche partout */}
+    <>
+      {!hideNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
@@ -28,10 +60,18 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/authentification" element={<Authentification />} />
+        <Route path="/filter" element={<Filter />} />
       </Routes>
-    </BrowserRouter>
-  )
+    </>
+  );
 }
 
-export default App
+export default function RootApp() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
