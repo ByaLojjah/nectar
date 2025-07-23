@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth, db } from '../firebase';
 export default function Profile() {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
