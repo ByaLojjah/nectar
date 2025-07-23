@@ -22,22 +22,22 @@ import Navbar from './components/Navbar'
 import Loader from './components/Loader'
 
 
-function AppWrapper() {
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+// function AppWrapper() {
+//   const [loading, setLoading] = useState(true);
+//   const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-      navigate('/signup');
-    }, 2000);
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setLoading(false);
+//       navigate('/login');
+//     }, 2000);
 
-    return () => clearTimeout(timer);
-  }, [navigate]);
+//     return () => clearTimeout(timer);
+//   }, [navigate]);
 
-  if (loading) return <Loader />;
-  return <App />;
-}
+//   if (loading) return <Loader />;
+//   return <App />;
+// }
 
 function App() {
   const location = useLocation();
@@ -69,7 +69,7 @@ function App() {
 export default function RootApp() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <App />
     </BrowserRouter>
   );
 }
