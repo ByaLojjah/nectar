@@ -1,20 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, db } from '../firebase-config';
+import { doc, getDoc } from 'firebase/firestore';
 
 const exclusiveProducts = [
-  { id: 1, name: "Organic Bananas", image: "https://i.pinimg.com/736x/f0/e8/ba/f0e8bae951c2ccdf948781a4f3ab4fde.jpg", price: 4.99 },
-  { id: 2, name: "Red Apple", image: "https://i.pinimg.com/736x/48/43/11/4843110c0a87f69186b7ad89e64100ee.jpg", price: 4.99 },
-  { id: 3, name: "Raisain", image: "https://i.pinimg.com/736x/5d/ef/da/5defda60b0de8f3d67f0b362b38113e8.jpg", price: 5.19 },
-  { id: 4, name: "Fraise", image: "https://i.pinimg.com/736x/e5/51/58/e55158e8fea3cb1bae182509a842085d.jpg", price: 3.49 },
-  { id: 5, name: "Ananas", image: "https://i.pinimg.com/736x/a7/64/28/a7642807831419aa2696377ff4723681.jpg", price: 2.99 }
+  // ... tes produits exclusifs (inchangés)
 ];
 
 const bestProducts = [
-  { id: 6, name: "Piment", image: "https://i.pinimg.com/736x/b8/c2/15/b8c2159a4782b1abbf9a2c080b9a98c5.jpg", price: 3.89 },
-  { id: 7, name: "Concombre", image: "https://i.pinimg.com/736x/5e/68/76/5e68765c170e3b020233bf97b8643277.jpg", price: 2.59 },
-  { id: 8, name: "Ginger", image: "https://i.pinimg.com/736x/ac/40/0b/ac400bf6b98cdf235fea26515abf3235.jpg", price: 4.59 },
-  { id: 9, name: "Aubergine", image: "https://i.pinimg.com/736x/75/73/6f/75736f14cca1a8f925e583a684addc96.jpg", price: 5.19 },
-  { id: 10, name: "Carrot", image: "https://i.pinimg.com/736x/8f/e9/1f/8fe91fa57b62c158e36a5883febc1075.jpg", price: 3.49 }
+  // ... tes best produits (inchangés)
 ];
 
 function ProductCard({ product, onAdd }) {
@@ -57,6 +51,27 @@ function ProductSection({ title, link, products, onAdd }) {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [location, setLocation] = useState(null);
+
+  // Récupérer la localisation depuis Firestore
+  useEffect(() => {
+    const fetchLocation = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      try {
+        const ref = doc(db, 'locations', user.uid);
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          setLocation(snap.data());
+        }
+      } catch (err) {
+        console.error("Erreur récupération localisation :", err);
+      }
+    };
+
+    fetchLocation();
+  }, []);
 
   const handleAddToBasket = (product) => {
     localStorage.setItem("selectedProduct", JSON.stringify(product));
@@ -66,13 +81,22 @@ const Home = () => {
   return (
     <div className="mt-5 pt-5">
       <div className="container text-center my-3">
-        <p className="mb-0 fw-bold fs-4 text-uppercase text-center" id="home-location">
-          <i className="fas fa-map-marker-alt me-2 text-success"></i>Bakeli Grocery
-        </p>
+        {/* Affichage de la localisation */}
+        {location ? (
+          <div className="alert alert-info">
+            📍 Votre localisation : <strong>{location.zone}</strong> - {location.area}
+          </div>
+        ) : (
+          <p>Chargement de votre localisation...</p>
+        )}
+
+        {/* Tu peux garder LocationForm ici ou le supprimer si tu veux */}
+        {/* <LocationForm /> */}
+
         <input className="form-control mt-3" type="search" placeholder="Search Store" />
       </div>
 
-      {/* Carousel Banners */}
+      {/* Le reste du code inchangé */}
       <div className="container my-4">
         <div id="bannerCarousel" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner rounded">
@@ -95,7 +119,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Product sliders */}
       <ProductSection
         title="Exclusive Offer"
         link="exclusive.html?type=exclusive"

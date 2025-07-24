@@ -22,7 +22,7 @@ const Signup = () => {
         email
       });
 
-      navigate('/');
+      navigate('/locationform');
     } catch (error) {
       alert(error.message);
     }

@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Pages
+
 import Home from './pages/Home';
 import Search from './pages/Search';
 import ProductDetail from './pages/ProductDetail';
@@ -28,20 +29,19 @@ import Loader from './components/Loader';
 
 
 
-
 // function AppWrapper() {
 //   const [loading, setLoading] = useState(true);
 //   const navigate = useNavigate();
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setLoading(false);
-//     }, 2000); // Simule le chargement initial (splash screen par exemple)
-//     return () => clearTimeout(timer);
-//   }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000); // Simule le chargement initial (splash screen par exemple)
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-//   if (loading) return <Loader />;
-//   return <App />;
-// }
+  // if (loading) return <Loader />;
+  // return <App />;
+
 
 function App() {
   const location = useLocation();
@@ -76,7 +76,7 @@ function App() {
 export default function RootApp() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <App />
     </BrowserRouter>
   );
 }
