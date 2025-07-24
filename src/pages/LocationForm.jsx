@@ -39,7 +39,7 @@ function LocationForm() {
   };
 
   return (
-    <div className="container text-center mt-5">
+    <div className="container text-center mt-5 pt-5">
       <img
         src="https://img.icons8.com/ios-filled/100/000000/marker.png"
         alt="location"
