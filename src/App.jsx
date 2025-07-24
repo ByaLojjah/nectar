@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 // Pages
 import Home from './pages/Home';
+import Product from './pages/Product';
 import Search from './pages/Search';
 import ProductDetail from './pages/ProductDetail';
 import LocationForm from './pages/LocationForm.jsx';
