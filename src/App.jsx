@@ -3,7 +3,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Pages
-
 import Home from './pages/Home';
 import Search from './pages/Search';
 import ProductDetail from './pages/ProductDetail';
@@ -23,6 +22,8 @@ import Best from './pages/Best';
 // Composants
 import Navbar from './components/Navbar';
 import Loader from './components/Loader';
+import CategoryCard from './components/CategoryCard'
+import ProductCard from './components/ProductCard'
 
 // function AppWrapper() {
 //   const [loading, setLoading] = useState(true);
@@ -54,6 +55,8 @@ function App() {
       <Routes>
         <Route path="/locationform" element={<LocationForm />} />
         <Route path="/" element={<Signup />} />
+        <Route path="/category-card" element={<CategoryCard />} />
+        <Route path="/ProductCard/:id" element={<ProductCard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
