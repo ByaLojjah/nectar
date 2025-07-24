@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 // Pages
@@ -18,12 +18,13 @@ import Favorite from './pages/Favorite';
 import Authentification from './pages/Authentification';
 import Filter from './pages/Filter';
 import Best from './pages/Best';
+import Grocery from './pages/Grocery';
+import Exclusive from './pages/Exclusive';
 // Composants
 import Navbar from './components/Navbar';
 import Loader from './components/Loader';
 import CategoryCard from './components/CategoryCard'
 import ProductCard from './components/ProductCard'
-
 // function AppWrapper() {
 //   const [loading, setLoading] = useState(true);
 
@@ -39,10 +40,8 @@ import ProductCard from './components/ProductCard'
   //   return () => clearTimeout(timer);
   // }, []);
 
-  // if (loading) return <Loader />;
-  // return <App />;
-
-
+  if (loading) return <Loader />;
+  return <App />;
 
 
 function App() {
@@ -54,15 +53,9 @@ function App() {
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
-        <Route path="/locationform" element={<LocationForm />} />
-        <Route path="/" element={<Signup />} />
-        <Route path="/category-card" element={<CategoryCard />} />
-        <Route path="/ProductCard/:id" element={<ProductCard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/ProductCard3" element={<ProductCard3 />} />
-        <Route path="/ProductCard4" element={<ProductCard4 />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
@@ -75,11 +68,15 @@ function App() {
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/filter" element={<Filter />} />
         <Route path="/best" element={<Best />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/grocery/:id" element={<Grocery />} />
+        <Route path="/exclusive" element={<Exclusive />} />
+
       </Routes>
     </>
   );
 }
-
 export default function RootApp() {
   return (
     <BrowserRouter>
