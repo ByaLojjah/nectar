@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-
 // Pages
 import Home from './pages/Home';
 import Search from './pages/Search';
@@ -44,6 +43,7 @@ import ProductCard from './components/ProductCard'
   // return <App />;
 
 
+
 function App() {
   const location = useLocation();
   const noNavbarRoutes = ['/', '/signup', '/login', '/authentification'];
@@ -61,6 +61,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<OrderHistory />} />

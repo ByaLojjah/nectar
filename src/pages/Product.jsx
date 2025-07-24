@@ -3,14 +3,15 @@ import React, { useState } from "react";
 const Product = ({ data }) => {
   const [showMessage, setShowMessage] = useState(false);
 
-  // Taux de change USD -> CFA (à adapter si besoin)
+  // Taux de change CFA -> USD (par exemple 600 FCFA = 1 USD)
   const tauxChange = 600;
 
-  // Conversion du prix en CFA
-  const priceCFA = (data.price * tauxChange).toFixed(0); // arrondi à l'entier
+  // Conversion du prix
+  const priceCFA = (data.price * tauxChange).toFixed(0); // USD → CFA
+  const priceUSD = (data.price).toFixed(2); // Juste pour clarté
+  // ou si tu pars du CFA : const priceUSD = (priceCFA / tauxChange).toFixed(2);
 
   const addToBasket = (id) => {
-    // Ici, tu peux ajouter l'id au panier (ex: localStorage)
     console.log("Produit ajouté:", id);
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 3000);
@@ -26,7 +27,6 @@ const Product = ({ data }) => {
           className="img-fluid mb-3"
           style={{ maxHeight: "200px" }}
         />
-        <br />
         <hr className="my-4" />
         <strong className="fw-bold text-black text-start">Produit Détail</strong>
         <p>
@@ -34,7 +34,6 @@ const Product = ({ data }) => {
           <br />
           Dans le cadre d'un régime alimentaire sain et varié.
         </p>
-
         <hr className="my-4" />
         <p className="fw-bold text-black">
           Avis{" "}
@@ -44,7 +43,12 @@ const Product = ({ data }) => {
             ))}
           </span>
         </p>
-        <p className="lead">{priceCFA} FCFA</p>
+        
+        <p className="lead">
+          {priceCFA} FCFA <br />
+          <small className="text-muted">({priceUSD} USD)</small>
+        </p>
+
         <button className="btn btn-success" onClick={() => addToBasket(data.id)}>
           Ajouter au panier
         </button>
@@ -56,4 +60,3 @@ const Product = ({ data }) => {
 };
 
 export default Product;
-
