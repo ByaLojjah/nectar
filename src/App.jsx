@@ -40,8 +40,7 @@ import ProductCard from './components/ProductCard'
   //   return () => clearTimeout(timer);
   // }, []);
 
-  if (loading) return <Loader />;
-  return <App />;
+ 
 
 
 function App() {
@@ -53,6 +52,7 @@ function App() {
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
+        <Route path="/" element={<Home />} />   
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
