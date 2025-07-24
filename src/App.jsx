@@ -18,7 +18,6 @@ import Favorite from './pages/Favorite';
 import Authentification from './pages/Authentification';
 import Filter from './pages/Filter';
 import Best from './pages/Best';
-
 // Composants
 import Navbar from './components/Navbar';
 import Loader from './components/Loader';
@@ -45,6 +44,7 @@ import ProductCard from './components/ProductCard'
 
 
 
+
 function App() {
   const location = useLocation();
   const noNavbarRoutes = ['/', '/signup', '/login', '/authentification'];
@@ -61,6 +61,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/ProductCard3" element={<ProductCard3 />} />
+        <Route path="/ProductCard4" element={<ProductCard4 />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
