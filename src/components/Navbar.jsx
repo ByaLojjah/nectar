@@ -20,7 +20,7 @@ function Navbar() {
                     <i className="fa-solid fa-store"></i><br />
                     <strong>Shop</strong>
                 </Link>
-                <Link to="/productcard" className="nav-link text-center">
+                <Link to="/categorycard" className="nav-link text-center">
                     <i className="fa-solid fa-compass"></i><br />
                     <strong>Explore</strong>
                 </Link>

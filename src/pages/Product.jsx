@@ -6,21 +6,27 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("selectedProduct"));
+    console.log("Produit sélectionné :", data); // debug
     if (data) {
       setProduct(data);
     }
   }, []);
 
-  const addToBasket = (productId) => {
+  const addToBasket = (product) => {
+    if (!product || !product.id) {
+      console.warn("Produit invalide");
+      return;
+    }
+
     const basket = JSON.parse(localStorage.getItem("basket")) || [];
-    basket.push(productId);
+    basket.push(product); // on stocke l’objet complet
     localStorage.setItem("basket", JSON.stringify(basket));
 
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
   };
 
-  if (!product) return <p>Chargement...</p>;
+  if (!product) return <p className="text-center mt-5">Chargement...</p>;
 
   return (
     <div className="container py-4 text-center">
@@ -53,7 +59,7 @@ const ProductDetail = () => {
 
       <button
         className="btn btn-success"
-        onClick={() => addToBasket(product.id)}
+        onClick={() => addToBasket(product)}
       >
         Ajouter au panier
       </button>
@@ -71,6 +77,7 @@ const ProductDetail = () => {
             borderRadius: 5,
             fontSize: 20,
             fontWeight: "bold",
+            zIndex: 9999,
           }}
         >
           Produit ajouté avec succès !

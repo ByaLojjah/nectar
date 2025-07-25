@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Orange Juice",
+    "price": 2.99,
+    "image": "/images/orange-juice.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Fresh Mango",
+    "price": 1.49,
+    "image": "/images/mango.jpg"
+  }
+]

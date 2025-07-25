@@ -33,7 +33,7 @@ const Signup = () => {
       <div className="w-100" style={{ maxWidth: '400px' }}>
         <form onSubmit={handleSignup} className="p-4 shadow rounded bg-white">
           <div className="text-center mb-4">
-            <img src="/carrot.png" alt="logo" style={{ height: 40 }} />
+            <img src="https://cdn-icons-png.flaticon.com/512/2909/2909782.png" alt="logo" style={{ height: 60 }} />
             <h2 className="fw-bold">Sign Up</h2>
             <p className="text-muted">Enter your credentials to continue</p>
           </div>
