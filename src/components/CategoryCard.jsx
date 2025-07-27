@@ -1,21 +1,10 @@
-<<<<<<< HEAD
-const CategoryCard = () => {
-    return (
-        <div>
-            <h1>Rechercher</h1>
-        </div>
-    )
-}
-
-export default CategoryCard;
-=======
 import './CategoryCard.css';
-import produit1 from '../pages/img-categories/produit1.png'
-import produit2 from '../pages/img-categories/produit2 (2).png'
-import produit3 from '../pages/img-categories/produit3.png'
-import produit4 from '../pages/img-categories/produit4.png'
-import produit5 from '../pages/img-categories/produit5.png'
-import produit6 from '../pages/img-categories/produit6.png'
+import produit1 from '../pages/img-categories/produit1.png';
+import produit2 from '../pages/img-categories/produit2 (2).png';
+import produit3 from '../pages/img-categories/produit3.png';
+import produit4 from '../pages/img-categories/produit4.png';
+import produit5 from '../pages/img-categories/produit5.png';
+import produit6 from '../pages/img-categories/produit6.png';
 import { useNavigate } from 'react-router-dom';
 
 const products1 = [
@@ -66,8 +55,7 @@ const products2 = [
 
 const CategoryCard = () => {
   const navigate = useNavigate();
-  
-  // Fonction pour rediriger avec l'id
+
   const handleRedirect = (id) => {
     navigate(`/ProductCard/${id}`);
   };
@@ -97,10 +85,7 @@ const CategoryCard = () => {
                   alt={product.title}
                 />
                 <div className="card-body">
-                  <h5
-                    className="card-title"
-                    dangerouslySetInnerHTML={{ __html: product.title }}
-                  />
+                  <h5 className="card-title">{product.title}</h5>
                 </div>
               </div>
             </div>
@@ -136,4 +121,3 @@ const CategoryCard = () => {
 };
 
 export default CategoryCard;
->>>>>>> af0e59a523665156420bddd3acf96593128cda99

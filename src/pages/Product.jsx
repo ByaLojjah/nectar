@@ -7,10 +7,10 @@ const Product = ({ data }) => {
   const tauxChange = 600;
 
   // Conversion du prix en CFA
-  const priceCFA = (data.price * tauxChange).toFixed(0); // arrondi à l'entier
+  const priceCFA = (data.price * tauxChange).toFixed(0);
 
   const addToBasket = (id) => {
-    // Ici, tu peux ajouter l'id au panier (ex: localStorage)
+
     console.log("Produit ajouté:", id);
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 3000);

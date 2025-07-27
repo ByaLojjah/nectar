@@ -1,78 +1,123 @@
-import React, { useState } from "react";
+import './CategoryCard.css';
+import produit1 from '../pages/img-categories/produit1.png';
+import produit2 from '../pages/img-categories/produit2 (2).png';
+import produit3 from '../pages/img-categories/produit3.png';
+import produit4 from '../pages/img-categories/produit4.png';
+import produit5 from '../pages/img-categories/produit5.png';
+import produit6 from '../pages/img-categories/produit6.png';
+import { useNavigate } from 'react-router-dom';
 
+const products1 = [
+  {
+    id: "fruits",
+    title: 'Frash Fruits & Vegetables',
+    img: produit1,
+  },
+  {
+    id: "huile",
+    title: 'Cooking Oil & Ghee',
+    img: produit2,
+  },
+  {
+    id: "meat",
+    title: 'Meat & Fish',
+    img: produit3,
+  },
+  {
+    id: "bakery",
+    title: 'Bakery & Snacks',
+    img: produit4,
+  },
+];
 
-const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const products2 = [
+  {
+    id: "beverage",
+    title: 'Beverage',
+    img: produit6,
+  },
+  {
+    id: "eggs",
+    title: 'Eggs',
+    img: produit5,
+  },
+  {
+    id: "oil",
+    title: 'Oil',
+    img: produit2,
+  },
+  {
+    id: "milk",
+    title: 'Milk',
+    img: produit5,
+  },
+];
+
+const CategoryCard = () => {
+  const navigate = useNavigate();
+
+  const handleRedirect = (id) => {
+    navigate(`/ProductCard/${id}`);
+  };
 
   return (
-    <div className="mt-5 pt-5">
-      <div className="container recherche ">
-        <form className="d-flex m-5" role="search" onSubmit={(e) => e.preventDefault()}>
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Egg"
-            aria-label="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button className="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
+    <div>
+      <div className="container text-center mt-4">
+        <h2>Find Products</h2>
+        <button type="button" className="btn btn-light mt-2">
+          <i className="bi bi-search"></i> Search Store
+        </button>
       </div>
 
-      <section className="container">
-        <div className="row m-4 d-flex justify-content-center gap-5 listeh">
-          {[
-            { name: "Egg Chicken Red", image: "images/image01.png" },
-            { name: "Egg Chicken White", image: "images/image02.png" },
-            { name: "Egg Pasta", image: "images/image3.png" },
-            { name: "Egg Noodles", image: "images/image04.png" },
-            { name: "Mayonnais Eggless", image: "images/image05.png" },
-            { name: "Egg Noodles", image: "images/image06.png" },
-          ]
-            .filter((product) =>
-              product.name.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .map((product, index) => (
+      {/* First Grid */}
+      <div className="container">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2 p-4 cartes">
+          {products1.map((product, index) => (
+            <div className="col" key={index}>
               <div
-                key={index}
-                className="col-lg-4 border border-secondary border-1 rounded-4 text-center  "
+                className="card h-100 redirige"
+                onClick={() => handleRedirect(product.id)}
+                style={{ cursor: 'pointer' }}
               >
                 <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-75 h-50 p-4"
+                  src={product.img}
+                  className="card-img-top categories-img"
+                  alt={product.title}
                 />
-                <p>
-                  <strong>{product.name}</strong> <br />
-                  <span className="text-secondary">4pcs, Price</span>
-                </p>
-                <div className="row d-flex justify-content-center">
-                  <div className="col-4 ">
-                    <h2>$1.99</h2>
-                  </div>
-                  <div className="col-4  text-end me-2">
-                    <button
-                      className="rounded-2"
-                      style={{ border: "none", background: "white", height: "40px", width: "70%", }}
-                    >
-                      <a href="/cart">
-                        <i
-                          className="fa-solid fa-square-plus "
-                          style={{ color: "#76bc76", fontSize: "40px" }}
-                        ></i>
-                      </a>
-                    </button>
-                  </div>
+                <div className="card-body">
+                  <h5 className="card-title">{product.title}</h5>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+
+      {/* Second Grid */}
+      <div className="container">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2 p-4 cartes">
+          {products2.map((product, index) => (
+            <div className="col" key={index}>
+              <div
+                className="card h-100 redirige"
+                onClick={() => handleRedirect(product.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <img
+                  src={product.img}
+                  className="card-img-top categories-img"
+                  alt={product.title}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{product.title}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Search;
+export default CategoryCard;
