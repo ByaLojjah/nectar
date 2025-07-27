@@ -1,7 +1,7 @@
 // src/pages/Best.jsx
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import { useCart } from "../context/CartContext"; // ✅ Utilise le hook custom
 
 const bestProducts = [
   { id: 1, name: "Piment", image: "https://i.pinimg.com/736x/7b/6c/5c/7b6c5c5430d95fe0cc8ef3464c66db59.jpg", price: 4.99 },
@@ -17,9 +17,9 @@ const bestProducts = [
 ];
 
 const Best = () => {
+  const { addToCart } = useCart(); // ✅ hook context
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     setProducts(bestProducts);

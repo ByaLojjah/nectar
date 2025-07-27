@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { CartProvider } from './context/CartContext'; // ✅ ← AJOUTER CECI
+import { CartProvider } from "./context/CartContext";
 
 // Pages
 import Home from './pages/Home';

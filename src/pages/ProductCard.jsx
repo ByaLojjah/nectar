@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-import { CartContext } from "../context/CartContext";
+// import { CartContext } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 
+// Import des images
 import mango from '../pages/img-categories/mango.jpg';
 import orannge from '../pages/img-categories/orannge.jpg';
 import ananas from '../pages/img-categories/ananas.jpg';
@@ -41,6 +43,7 @@ import eggs4 from '../pages/img-categories/eggs4.png';
 import eggs5 from '../pages/img-categories/eggs5.png';
 import eggs6 from '../pages/img-categories/eggs6.png';
 
+// Produits par catégorie
 const allProducts = {
   fruits: [
     { title: "Mango", img: mango, price: 1.99 },
@@ -51,49 +54,50 @@ const allProducts = {
     { title: "Pomme", img: pomme, price: 1.99 },
   ],
   huile: [
-    { title: "Dairy & Eggs", img: huile1, price: 1.99 },
-    { title: "Fresh Fruits", img: huile2, price: 1.99 },
-    { title: "Bakery", img: huile3, price: 1.99 },
-    { title: "Bakery", img: huile7, price: 1.99 },
-    { title: "Bakery", img: huile5, price: 1.99 },
-    { title: "Bakery", img: huile6, price: 1.99 },
+    { title: "Huile 1", img: huile1, price: 1.99 },
+    { title: "Huile 2", img: huile2, price: 1.99 },
+    { title: "Huile 3", img: huile3, price: 1.99 },
+    { title: "Huile 7", img: huile7, price: 1.99 },
+    { title: "Huile 5", img: huile5, price: 1.99 },
+    { title: "Huile 6", img: huile6, price: 1.99 },
   ],
   meat: [
-    { title: "Meat & Fish", img: meat1, price: 1.99 },
-    { title: "Meat", img: meat2, price: 1.99 },
-    { title: "Meat", img: meat3, price: 1.99 },
-    { title: "Fish", img: meat4, price: 1.99 },
-    { title: "Fish", img: meat5, price: 1.99 },
-    { title: "Fish", img: meat6, price: 1.99 },
+    { title: "Meat 1", img: meat1, price: 1.99 },
+    { title: "Meat 2", img: meat2, price: 1.99 },
+    { title: "Meat 3", img: meat3, price: 1.99 },
+    { title: "Fish 1", img: meat4, price: 1.99 },
+    { title: "Fish 2", img: meat5, price: 1.99 },
+    { title: "Fish 3", img: meat6, price: 1.99 },
   ],
   bakery: [
-    { title: "Snack", img: snack1, price: 1.99 },
-    { title: "Snack", img: snack2, price: 1.99 },
-    { title: "Snack", img: snack3, price: 1.99 },
-    { title: "Snack", img: snack4, price: 1.99 },
-    { title: "Snack", img: snack5, price: 1.99 },
-    { title: "Snack", img: snack6, price: 1.99 },
+    { title: "Snack 1", img: snack1, price: 1.99 },
+    { title: "Snack 2", img: snack2, price: 1.99 },
+    { title: "Snack 3", img: snack3, price: 1.99 },
+    { title: "Snack 4", img: snack4, price: 1.99 },
+    { title: "Snack 5", img: snack5, price: 1.99 },
+    { title: "Snack 6", img: snack6, price: 1.99 },
   ],
   beverage: [
-    { title: "Beverage", img: bev1, price: 1.99 },
-    { title: "Beverage", img: bev2, price: 1.99 },
-    { title: "Beverage", img: bev3, price: 1.99 },
-    { title: "Beverage", img: bev4, price: 1.99 },
-    { title: "Beverage", img: bev5, price: 1.99 },
-    { title: "Beverage", img: bev6, price: 1.99 },
+    { title: "Beverage 1", img: bev1, price: 1.99 },
+    { title: "Beverage 2", img: bev2, price: 1.99 },
+    { title: "Beverage 3", img: bev3, price: 1.99 },
+    { title: "Beverage 4", img: bev4, price: 1.99 },
+    { title: "Beverage 5", img: bev5, price: 1.99 },
+    { title: "Beverage 6", img: bev6, price: 1.99 },
   ],
   eggs: [
-    { title: "Eggs", img: eggs1, price: 1.99 },
-    { title: "Eggs", img: eggs2, price: 1.99 },
-    // { title: "Eggs", img: eggs3, price: 1.99 },
-    { title: "Eggs", img: eggs4, price: 1.99 },
-    { title: "Eggs", img: eggs5, price: 1.99 },
-    { title: "Eggs", img: eggs6, price: 1.99 },
+    { title: "Eggs 1", img: eggs1, price: 1.99 },
+    { title: "Eggs 2", img: eggs2, price: 1.99 },
+    { title: "Eggs 4", img: eggs4, price: 1.99 },
+    { title: "Eggs 5", img: eggs5, price: 1.99 },
+    { title: "Eggs 6", img: eggs6, price: 1.99 },
   ],
 };
 
 const ProductCard = () => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useCart();
+
+  // const { addToCart } = useContext(CartContext);
   const { id } = useParams();
   const products = allProducts[id] || [];
   const [loading, setLoading] = useState(false);
@@ -110,8 +114,9 @@ const ProductCard = () => {
     const cartRef = doc(db, "panier", user.uid);
     const productToAdd = {
       title: product.title,
-      price: `$${product.price.toFixed(2)}`,
+      price: product.price,
       img: product.img,
+      quantity: 1,
     };
 
     try {
@@ -125,11 +130,12 @@ const ProductCard = () => {
           items: [productToAdd],
         });
       }
-      addToCart(productToAdd);
+
+      addToCart(productToAdd); // local context (si utilisé)
       alert(`${product.title} ajouté au panier !`);
     } catch (error) {
-      console.error("Erreur ajout panier:", error);
-      alert("Erreur lors de l'ajout au panier. Veuillez réessayer.");
+      console.error("Erreur Firestore:", error);
+      alert("Erreur lors de l'ajout au panier.");
     } finally {
       setLoading(false);
     }
@@ -140,7 +146,9 @@ const ProductCard = () => {
       <h1 className="mb-4 text-capitalize">{id} Products</h1>
 
       {products.length === 0 ? (
-        <p className="text-center text-muted fs-5">Aucun produit dans cette catégorie.</p>
+        <p className="text-center text-muted fs-5">
+          Aucun produit dans cette catégorie.
+        </p>
       ) : (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
           {products.map((product, index) => (
@@ -154,7 +162,9 @@ const ProductCard = () => {
                 />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{product.title}</h5>
-                  <p className="text-success fw-semibold mb-3">${product.price.toFixed(2)}</p>
+                  <p className="text-success fw-semibold mb-3">
+                    ${product.price.toFixed(2)}
+                  </p>
                   <button
                     disabled={loading}
                     type="button"

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
+// import { CartContext } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
+
 
 const groceryProducts = [
   { id: 11, name: "Beef Bone", image: "https://i.pinimg.com/1200x/f4/85/bf/f485bf8bf478bf2d7acfc8d1edd1de93.jpg", price: 3.89 },
@@ -14,10 +16,12 @@ const groceryProducts = [
 ];
 
 const Grocery = () => {
+  const { addToCart } = useCart();
+  
   const location = useLocation();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const { addToCart } = useContext(CartContext);
+  // const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

@@ -1,41 +1,57 @@
 import React, { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // Récupérer fonctions et données du panier global via contexte
+  const { basket, addToCart } = useCart();
+
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("selectedProduct"));
-    console.log("Produit sélectionné :", data); // debug
+    let data = JSON.parse(localStorage.getItem("selectedProduct"));
     if (data) {
+      if (!data.id) {
+        data.id = Date.now() + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("selectedProduct", JSON.stringify(data));
+      }
       setProduct(data);
     }
   }, []);
 
-  const addToBasket = (product) => {
-    if (!product || !product.id) {
+  const addToBasket = async (product) => {
+    if (!product) {
       console.warn("Produit invalide");
       return;
     }
 
-    const basket = JSON.parse(localStorage.getItem("basket")) || [];
-    basket.push(product); // on stocke l’objet complet
-    localStorage.setItem("basket", JSON.stringify(basket));
+    // Vérifie si le produit est déjà dans le panier global (contexte)
+    const exists = basket.some((item) => item.id === product.id);
+    if (exists) {
+      alert("Ce produit est déjà dans le panier.");
+      return;
+    }
 
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
+    try {
+      await addToCart(product);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (error) {
+      console.error("Erreur ajout panier :", error);
+      alert("Erreur lors de l'ajout au panier.");
+    }
   };
 
   if (!product) return <p className="text-center mt-5">Chargement...</p>;
 
   return (
-    <div className="container py-4 text-center">
-      <h4>{product.name}</h4>
+    <div className="container py-4 text-center pt-5 mt-5">
+      <h4>{product.name || product.title}</h4>
       <img
-        src={product.image}
+        src={product.image || product.img}
         className="img-fluid mb-3"
-        style={{ maxHeight: "200px" }}
-        alt={product.name}
+        style={{ maxHeight: "200px", objectFit: "cover" }}
+        alt={product.name || product.title}
       />
       <hr className="my-4" />
       <strong className="fw-bold text-black text-start">Produit Détail</strong>
@@ -44,7 +60,6 @@ const ProductDetail = () => {
         <br />
         Dans le cadre d'un régime alimentaire sain et varié.
       </p>
-
       <hr className="my-4" />
       <p className="fw-bold text-black">
         Avis{" "}
@@ -54,13 +69,9 @@ const ProductDetail = () => {
           ))}
         </span>
       </p>
-
       <p className="lead">${product.price}</p>
 
-      <button
-        className="btn btn-success"
-        onClick={() => addToBasket(product)}
-      >
+      <button className="btn btn-success" onClick={() => addToBasket(product)}>
         Ajouter au panier
       </button>
 
