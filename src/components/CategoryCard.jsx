@@ -8,14 +8,36 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const products = [
-  { id: "fruits", title: 'Fresh Fruits & Vegetables', img: produit1 },
-  { id: "huile", title: 'Cooking Oil & Ghee', img: produit2 },
-  { id: "meat", title: 'Meat & Fish', img: produit3 },
-  { id: "bakery", title: 'Bakery & Snacks', img: produit4 },
-  { id: "beverage", title: 'Beverage', img: produit6 },
-  { id: "eggs", title: 'Eggs', img: produit5 },
-  // { id: "oil", title: 'Oil', img: produit2 },
-  // { id: "milk", title: 'Milk', img: produit5 },
+  {
+    id: "fruits",
+    title: "Fresh Fruits & Vegetables",
+    img: "https://images.unsplash.com/photo-1610832958506-aa56368176cf"
+  },
+  {
+    id: "huile",
+    title: "Cooking Oil & Ghee",
+    img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5"
+  },
+  {
+    id: "meat",
+    title: "Meat & Fish",
+    img: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f"
+  },
+  {
+    id: "bakery",
+    title: "Bakery & Snacks",
+    img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35"
+  },
+  {
+    id: "beverage",
+    title: "Beverage",
+    img: "https://images.unsplash.com/photo-1544145945-f90425340c7e"
+  },
+  {
+    id: "eggs",
+    title: "Eggs",
+    img: "https://images.unsplash.com/photo-1506976785307-8732e854ad03"
+  }
 ];
 
 // Composant carte produit

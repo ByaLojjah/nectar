@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Mango",
+    "category": "fruits",
+    "price": 1.99,
+    "description": "Mangue fraîche"
+  },
+  {
+    "id": 2,
+    "title": "Orange",
+    "category": "fruits",
+    "price": 1.99,
+    "description": "Orange fraîche"
+  },
+  {
+    "id": 3,
+    "title": "Banane",
+    "category": "fruits",
+    "price": 1.99,
+    "description": "Banane fraîche"
+  },
+  {
+    "id": 4,
+    "title": "Ananas",
+    "category": "fruits",
+    "price": 2.99,
+    "description": "Ananas frais"
+  }
+]
